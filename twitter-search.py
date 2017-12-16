@@ -1,4 +1,4 @@
-#!/usr/bin/env pythonA
+#!/usr/bin/env python
 
 import twitter
 import json
