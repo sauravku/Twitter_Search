@@ -24,8 +24,8 @@ class Tweet(object):
         def __init__(self, query):
                 self.retweet_count = int ( query["retweet_count"] )
                 self.id_ = int( query["id"] )
-                self.text = query["text"].encode('utf-8')
-                self.user = query["user"]["screen_name"].encode('utf-8')
+                self.text = query["text"].encode('ascii','ignore')
+                self.user = query["user"]["screen_name"].encode('ascii','ignore')
                 # time in utc format
                 date = query["created_at"].encode()
                 self.created_at = datetime.datetime.strptime(date, "%a %b %d %H:%M:%S +0000 %Y")
@@ -43,9 +43,10 @@ class Tweet(object):
                         
                 
         def __repr__(self):
-                return "%s %s (%s) %s %s %s" % ( self.id_, self.retweet_count,
+                return "%s %s (%s) %s %s %s %s" % ( self.id_, self.retweet_count,
                                                  self.created_at, self.lang,
-                                                 self.place, self.country)
+                                                 self.place, self.country,
+                                                 self.text )
 
 class Search(object):
         def __init__(self):
