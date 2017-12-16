@@ -85,13 +85,15 @@ class Search(object):
 
         def sortByDate(self):
                 self.tweet.sort(key=lambda tup: tup.created_at, reverse=True)
-                
-search = Search()
-search.searchTweets("trump", count=100)
 
-search.sortByDate()
-print "Search complete (%.3f seconds)" % search.completeSearchTime()
+def run():
+	search = Search()
+	search.searchTweets("trump", count=100)
+        search.sortByDate()
+        print "Search complete (%.3f seconds)" % search.completeSearchTime()
+        for tweet in search.tweet:
+                print tweet
 
-for tweet in search.tweet:        
-        print tweet
+if __name__ == '__main__':
+        run()
 
